@@ -1,7 +1,7 @@
 CI Badge
 
 # RabbitMQ Role
-The RabbitMQ role for Rocky Linux infrastructure
+The RabbitMQ role for Circle Linux infrastructure
 
 ## Getting started
 Ensure all dependencies are installed and then follow the below process

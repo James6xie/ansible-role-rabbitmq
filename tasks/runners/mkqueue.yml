@@ -21,7 +21,7 @@
     durable: true
     message_ttl: "{{ message_ttl|default(omit) }}"
     state: present
-    login_user: rockyadmin
+    login_user: circleadmin
     login_password: "{{ rabbitmq_admin_password }}"
   tags:
     - rabbitmq
@@ -35,7 +35,7 @@
     routing_key: "{{ routing_item }}"
     vhost: "{{ vhost|default('/pubsub') }}"
     state: present
-    login_user: rockyadmin
+    login_user: circleadmin
     login_password: "{{ rabbitmq_admin_password }}"
   loop: '{{ routing_keys }}'
   loop_control:

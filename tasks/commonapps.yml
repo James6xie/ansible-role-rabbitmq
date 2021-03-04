@@ -1,26 +1,26 @@
 ---
 # Common App Queues
 # GitLab + Others like CI
-- name: Rocky Automation User
+- name: Circle Automation User
   run_once: true
   include_tasks: runners/mkuser.yml
   vars:
-    username: rockyautomation
+    username: circleautomation
   tags:
     - ci
 
-- name: Rocky Automation Queue
+- name: Circle Automation Queue
   run_once: true
   include_tasks: runners/mkqueue.yml
   vars:
-    username: rockyautomation
-    queue_name: rockyautomation-ci
+    username: circleautomation
+    queue_name: circleautomation-ci
     # 10 Days
     message_ttl: 864000000
     routing_keys:
-      - "org.rockylinux.{{ rabbitmq_env }}.gitlab.#"
+      - "org.cclinux.{{ rabbitmq_env }}.gitlab.#"
       # Testing only
-      - "org.rockylinux.ci.#"
+      - "org.cclinux.ci.#"
   tags:
     - ci
 
@@ -32,7 +32,7 @@
     queue_name: "{{ item }}"
     message_ttl: 432000000
     routing_keys:
-      - "org.rockylinux.ci.#"
+      - "org.cclinux.ci.#"
   loop:
     - osci-pipeline-queue-0
     - osci-pipeline-queue-1
@@ -45,19 +45,19 @@
 # End GitLab and CI
 
 # Koji User
-- name: Rocky Koji User
+- name: Circle Koji User
   run_once: true
   include_tasks: runners/mkuser.yml
   vars:
-    username: rockykoji
+    username: circlekoji
 # End Koji
 
 # Potential ODCS
-- name: Create the rocky-odcs vhost
+- name: Create the circle-odcs vhost
   run_once: true
   delegate_to: "{{ rabbitmq_cluster_list[0] }}"
   community.rabbitmq.rabbitmq_vhost:
-    name: rocky-odcs
+    name: circle-odcs
     state: present
   tags:
     - odcs
@@ -73,7 +73,7 @@
       ha-mode: all
       ha-sync-mode: automatic
       ha-sync-batch-size: 10000
-    vhost: rocky-odcs
+    vhost: circle-odcs
   tags:
     - odcs
 
@@ -88,17 +88,17 @@
     tags:
       expires: 111600000
       max-length-bytes: 1073741824
-    vhost: rocky-odcs
+    vhost: circle-odcs
   tags:
     - odcs
 
 # To consider: Separate ODCS Admin Account?
-- name: Grant the rockyadmin user access to the rocky-odcs vhost
+- name: Grant the circleadmin user access to the circle-odcs vhost
   run_once: true
   delegate_to: "{{ rabbitmq_cluster_list[0] }}"
   community.rabbitmq.rabbitmq_user:
-    user: rockyadmin
-    vhost: rocky-odcs
+    user: circleadmin
+    vhost: circle-odcs
     configure_priv: ".*"
     read_priv: ".*"
     write_priv: ".*"

@@ -10,7 +10,7 @@
 # Add the admin user
 - name: Create the admin user for our vhosts
   community.rabbitmq.rabbitmq_user:
-    user: rockyadmin
+    user: circleadmin
     password: "{{ rabbitmq_admin_password }}"
     vhost: "{{ item }}"
     configure_priv: ".*"

@@ -13,16 +13,16 @@ rabbitmq_cookie: "NotASafeCookie"
 rabbitmq_admin_password: "NotASafePassword"
 rabbitmq_cluster_name: "rabbit"
 rabbitmq_cluster_list:
-  - rabbitmq01.rockylinux.org
-  - rabbitmq02.rockylinux.org
-  - rabbitmq03.rockylinux.org
+  - rabbitmq01.cclinux.org
+  - rabbitmq02.cclinux.org
+  - rabbitmq03.cclinux.org
 rabbitmq_env: "production"
 rabbitmq_ldap_servers:
-  - ipa001.rockylinux.org
-  - ipa002.rockylinux.org
-rabbitmq_ldap_bind_dn: "uid=binder,cn=sysaccounts,cn=etc,dc=rockylinux,dc=org"
+  - ipa001.cclinux.org
+  - ipa002.cclinux.org
+rabbitmq_ldap_bind_dn: "uid=binder,cn=sysaccounts,cn=etc,dc=cclinux.org,dc=org"
 rabbitmq_ldap_bind_pw: "ThisIsNotThePassword1!"
-rabbitmq_ldap_basedn: "cn=accounts,dc=rockylinux,dc=org"
+rabbitmq_ldap_basedn: "cn=accounts,dc=cclinux.org,dc=org"
 
 # You can override this in your playbooks as well
 rabbitmq_plugins:

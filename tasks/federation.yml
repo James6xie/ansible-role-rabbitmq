@@ -13,7 +13,7 @@
   run_once: true
   delegate_to: "{{ rabbitmq_cluster_list[0] }}"
   community.rabbitmq.rabbitmq_user:
-    user: rockypubsub
+    user: circlepubsub
     permissions:
       - vhost: public_pubsub
         configure_priv: "^(\\w{8}(-\\w{4}){3}-\\w{12})$"
