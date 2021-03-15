@@ -39,6 +39,7 @@ password_hashing_module = rabbit_password_hashing_sha256
 
 cluster_partition_handling  = autoheal
 cluster_formation.node_type = disc
+cluster_formation.peer_discovery_backend = classic_config
 
 product.name    = CircleMQ!
 product.version = 0.0.1
@@ -48,5 +49,5 @@ disk_free_limit.absolute = 2GB
 
 # Cluster Nodes
 {% for mqsrv in rabbitmq_cluster_list %}
-cluster_formation.classic_config.nodes.{{ loop.index }} = {{ mqsrv }}
+cluster_formation.classic_config.nodes.{{ loop.index }} = rabbit@{{ mqsrv }}
 {% endfor %}
